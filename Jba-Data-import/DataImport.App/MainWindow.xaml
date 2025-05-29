@@ -1,0 +1,51 @@
+﻿<Window x:Class="DataImport.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="JBA Data Import"
+        Height="520" Width="640"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True"
+        ResizeMode="CanResize"
+        WindowStyle="None"
+        AllowsTransparency="True">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="0,0,12,0"/>
+        </Style>
+        <DropShadowEffect x:Key="DropShadowEffect" Color="#888" BlurRadius="18" ShadowDepth="4" Opacity="0.18"/>
+    </Window.Resources>
+    <Border CornerRadius="16" Background="White" Padding="0" Margin="12"
+            Effect="{DynamicResource DropShadowEffect}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="44"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!-- Custom header for dragging -->
+            <Grid Background="#2d3a4a" MouseDown="Header_MouseDown" Grid.Row="0">
+                <TextBlock Text="JBA Data Import" Foreground="White" FontWeight="Bold" FontSize="16"
+                           VerticalAlignment="Center" Margin="16,0,0,0"/>
+                <Button Content="✕" Width="32" Height="32" HorizontalAlignment="Right" Margin="0,6,8,6"
+                        VerticalAlignment="Center" Background="Transparent" Foreground="White"
+                        BorderThickness="0" FontSize="16" Click="CloseButton_Click"/>
+            </Grid>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Margin="40">
+                <TextBox x:Name="FilePathTextBox" Width="320" IsReadOnly="True" Margin="0,0,0,8"
+                         TextChanged="FilePathTextBox_TextChanged" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="SelectFileButton" Content="Select File" Width="120" Click="SelectFileButton_Click" Background="#4f8cff"/>
+                    <Button x:Name="ProcessFileButton" Content="Process File" Width="120"
+                            Click="ProcessFileButton_Click" IsEnabled="False" Background="#2ecc71"/>
+                </StackPanel>
+                <ProgressBar x:Name="ProgressBar" Height="20" Width="320" Margin="0,16,0,0" IsIndeterminate="True" Visibility="Collapsed"/>
+                <TextBlock x:Name="StatusTextBlock" Foreground="Red" Margin="0,8,0,0" TextAlignment="Center"/>
+                <Button x:Name="ViewDataButton" Content="View Current Data" Width="120" Margin="0,8,0,0"
+                        Click="ViewDataButton_Click" Background="#4f8cff"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
