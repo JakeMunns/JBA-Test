@@ -1,9 +1,40 @@
 <Window x:Class="DataImport.App.ViewDataWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Current Precipitation Data" Height="600" Width="900"
-        WindowStartupLocation="CenterOwner">
-    <Grid Margin="16">
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="True" IsReadOnly="True"/>
-    </Grid>
+        Title="Current Precipitation Data"
+        Height="600" Width="900"
+        Background="Transparent"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResize">
+    <Window.Resources>
+        <DropShadowEffect x:Key="DropShadowEffect" Color="#888" BlurRadius="18" ShadowDepth="4" Opacity="0.18"/>
+    </Window.Resources>
+    <Border CornerRadius="16" Background="White" Padding="0" Margin="12"
+            Effect="{DynamicResource DropShadowEffect}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="44"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!-- Header -->
+            <Grid Background="#2d3a4a" MouseDown="Header_MouseDown" Grid.Row="0">
+                <TextBlock Text="Current Precipitation Data" Foreground="White" FontWeight="Bold" FontSize="16"
+                           VerticalAlignment="Center" Margin="16,0,0,0"/>
+                <Button Content="✕" Width="32" Height="32" HorizontalAlignment="Right" Margin="0,6,8,6"
+                        VerticalAlignment="Center" Background="Transparent" Foreground="White"
+                        BorderThickness="0" FontSize="16" Click="CloseButton_Click"/>
+            </Grid>
+            <!-- Content -->
+            <Grid Grid.Row="1" Margin="16">
+                <DataGrid x:Name="DataGrid" AutoGenerateColumns="True" IsReadOnly="True"/>
+                <Grid x:Name="LoadingOverlay" Background="#AAFFFFFF" Visibility="Collapsed">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Loading data..." Margin="0,12,0,0" FontWeight="Bold" Foreground="#2d3a4a"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
 </Window>

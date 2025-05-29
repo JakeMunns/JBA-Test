@@ -41,7 +41,7 @@ public partial class MainWindow : Window
         ProcessFileButton.IsEnabled =
             !string.IsNullOrWhiteSpace(FilePathTextBox.Text) && File.Exists(FilePathTextBox.Text);
     }
-    
+
     private void Header_MouseDown(object sender, MouseButtonEventArgs e)
     {
         if (e.ChangedButton == MouseButton.Left)
@@ -97,16 +97,13 @@ public partial class MainWindow : Window
             resultsWindow.ShowDialog();
         }
     }
-    private async void ViewDataButton_Click(object sender, RoutedEventArgs e)
-    {
-        using var db = new DataImportDbContext();
-        var records = await db.PrecipitationRecords.ToListAsync();
 
-        var viewWindow = new ViewDataWindow(records)
+    private void ViewDataButton_Click(object sender, RoutedEventArgs e)
+    {
+        var viewWindow = new ViewDataWindow
         {
             Owner = this
         };
         viewWindow.ShowDialog();
     }
-    
 }
