@@ -9,7 +9,8 @@
         SnapsToDevicePixels="True"
         ResizeMode="CanResize"
         WindowStyle="None"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        Icon="pack://application:,,,/DataImport.App;component/Resources/favicon.ico">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontWeight" Value="SemiBold"/>
